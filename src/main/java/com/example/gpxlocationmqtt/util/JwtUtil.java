@@ -17,6 +17,7 @@ public class JwtUtil {
     @Value("${jwt.expiration}")
     private long jwtExpiration;
 
+    // Generates JWT token for the specified username
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
@@ -26,6 +27,7 @@ public class JwtUtil {
                 .compact();
     }
 
+    // Retrieves claims from the JWT token
     public Claims getClaimsFromToken(String token) {
         return Jwts.parser()
                 .setSigningKey(secretKey)
@@ -33,13 +35,14 @@ public class JwtUtil {
                 .getBody();
     }
 
+    // Validates if the token has expired
     public boolean validateToken(String token) {
         Claims claims = getClaimsFromToken(token);
         return claims.getExpiration().after(new Date());
     }
 
+    // Extracts the username from the token
     public String getUsernameFromToken(String token) {
         return getClaimsFromToken(token).getSubject();
     }
 }
-

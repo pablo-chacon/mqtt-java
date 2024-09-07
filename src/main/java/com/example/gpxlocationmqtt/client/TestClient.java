@@ -7,7 +7,7 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 public class TestClient {
 
     public static void main(String[] args) {
-        String broker = "tcp://broker.hivemq.com:1883";  // Replace with your broker URL if different
+        String broker = "tcp://localhost:1883";  // Use your Mosquitto broker URL
         String clientId = "testClient";
         MemoryPersistence persistence = new MemoryPersistence();
 
